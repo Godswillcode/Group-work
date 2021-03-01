@@ -4,10 +4,33 @@ import Home from "./Components/Pages/Home";
 import About from "./Components/Pages/About";
 import Service from "./Components/Pages/Service";
 import Contact from "./Components/Pages/Contact";
+import Navbar from "./Components/Navbar";
+import { useEffect, useState } from "react";
+import Dropdown from "./Components/Dropdown";
 
 function App() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggle = () => {
+    setIsOpen(!isOpen)
+  }
+
+  useEffect(() => {
+    const hideMenu = () => {
+        if(window.innerWidth > 768 && isOpen){
+          setIsOpen(false)
+        }
+    }
+    window.addEventListener('resize', hideMenu)
+
+    return () => {
+      window.removeEventListener('resize', hideMenu)
+    }
+  })
   return (
     <>
+    <Navbar toggle={toggle}/>
+    <Dropdown isOpen={isOpen} toggle={toggle}/>
       <Switch>
         <Route path="/">
           <Home />
