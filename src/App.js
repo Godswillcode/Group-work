@@ -7,6 +7,7 @@ import Contact from "./Components/Pages/Contact";
 import Navbar from "./Components/Navbar";
 import { useEffect, useState } from "react";
 import Dropdown from "./Components/Dropdown";
+import Footer from "./Components/Footer";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -32,7 +33,7 @@ function App() {
     <Navbar toggle={toggle}/>
     <Dropdown isOpen={isOpen} toggle={toggle}/>
       <Switch>
-        <Route path="/">
+        <Route exact path="/">
           <Home />
         </Route>
         <Route path="/about">
@@ -46,6 +47,7 @@ function App() {
           <Contact />{" "}
         </Route>
       </Switch>
+      <Footer/>
     </>
   );
 }
